@@ -171,7 +171,7 @@ uint32_t SerialKeyPressed(uint8_t *key)
 		{  
 		
         *key = rxBuf; 
-				isRecv=0;			
+	  isRecv=0;			
         return 1;
     }
     else
@@ -276,18 +276,24 @@ u8 ReciveFile2SD(u8* fname)
 {
     uint8_t key = 0;
     u32 size;
-		printf("******************************");	
+    u8 i=0; 
+    u8 t1t2Buf[14]; 
+    float tempt1=0,tempt2=0; 
+    u32 tempserial=0;      
+      BootPrarmeter BpsetP;
+loop:		printf("******************************");	
 		printf("Waiting CMD\n");
 
 	
 	
 		GetKey(&key);
 
-	loop:		Serial_PutString("\r\n*************************\n\r");
+			Serial_PutString("\r\n*************************\n\r");
 					Serial_PutString("\r\n*SP400 BootLoader       *\n\r");
                               Serial_PutString("\r\n*Download Factory------0*\n\r");
 					Serial_PutString("\r\n*Download User---------1*\n\r");
 					Serial_PutString("\r\n*Cancle----------------2*\n\r");
+                              Serial_PutString("\r\n*DownLoad Parameter----3*\n\r");
 					Serial_PutString("\r\n*************************\n\r");
 					GetKey(&key);
             if(key == 0x30)
@@ -318,6 +324,25 @@ u8 ReciveFile2SD(u8* fname)
 
 		}
 		else if(key==0x32)return 0;
+            else if(key==0x33)
+            {
+                  printf("Update the Par...\n");
+                  for(i=0;i<14;i++)
+                  {
+                        GetKey((t1t2Buf+i));
+                  }
+                  tempt1=*((float*)t1t2Buf);
+                  tempt2=*((float*)(t1t2Buf+4));
+                  tempserial=*((u32*)(t1t2Buf+8));
+                  printf("t1=%.2f t2=%.2f serial:%d\n",tempt1,tempt2,tempserial);
+                  BpsetP=*(BootPrarmeter *)((u32)BootPrarmeterAddr);
+                  BpsetP.calibp.ptsaf1=tempt1;
+                  BpsetP.calibp.ptsaf2=tempt2;
+                   BpsetP.serialNum=tempserial;
+                  Flash_Write(BootPrarmeterAddr,(u8*)&BpsetP,sizeof(BpsetP));
+                  goto loop;
+                  
+            }
 		else
 		{
 				printf("Error Cmd\n");

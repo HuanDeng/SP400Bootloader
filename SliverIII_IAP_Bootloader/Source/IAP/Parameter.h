@@ -45,7 +45,7 @@ typedef struct
 	u8 isEnterBootloadToWIFI;
 	u8 isEnterBootLoadToSD;
 	CalibParameter calibp;
-	u16 serialNum;
+	u32 serialNum;
 	
 }BootPrarmeter;
 
