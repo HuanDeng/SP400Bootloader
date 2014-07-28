@@ -59,3 +59,15 @@ $RECYCLE.BIN/
 *.msi
 *.msm
 *.msp
+*.d
+*.crf
+*.iex
+*.axf
+*.htm
+*.lnp
+*.map
+*.sct
+*.HUANHUAN
+*.bak
+*.txt
+*.lst
