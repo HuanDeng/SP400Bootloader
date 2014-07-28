@@ -66,9 +66,9 @@
             <nStopU2X>0</nStopU2X>
           </BeforeCompile>
           <BeforeMake>
-            <RunUserProg1>0</RunUserProg1>
+            <RunUserProg1>1</RunUserProg1>
             <RunUserProg2>0</RunUserProg2>
-            <UserProg1Name></UserProg1Name>
+            <UserProg1Name>..\MDK\Version.exe</UserProg1Name>
             <UserProg2Name></UserProg2Name>
             <UserProg1Dos16Mode>0</UserProg1Dos16Mode>
             <UserProg2Dos16Mode>0</UserProg2Dos16Mode>
@@ -357,7 +357,7 @@
               <MiscControls></MiscControls>
               <Define>USE_STDPERIPH_DRIVER, STM32F10X_HD</Define>
               <Undefine></Undefine>
-              <IncludePath>..\Source\CMSIS;..\Source\CMSIS\startup;..\Source\FATFS;..\Source\FATFS\option;..\Source\FWlib\inc;..\Source\GUI;..\Source\IAP;..\Source\SP400-IAP;..\Source\SYSTEM;..\Source\WIFI</IncludePath>
+              <IncludePath>..\Source\CMSIS;..\Source\CMSIS\startup;..\Source\FATFS;..\Source\FATFS\option;..\Source\FWlib\inc;..\Source\GUI;..\Source\IAP;..\Source\SP400-IAP;..\Source\SYSTEM;..\Source\WIFI;..\MDK</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>

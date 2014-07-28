@@ -1,6 +1,6 @@
 #include "stm32f10x.h"
 #include "Process.h"
-
+#include "Version.h"
 
 #define _DF1S	0x81
 SD_CardInfo SDCardInfo;
@@ -78,7 +78,7 @@ int main(void)
 		memset((void *)&Bp,0,sizeof(Bp));
 		for(i=0;i<14;i++)
 		{
-			Bp.bootVersion[i]=defaul_BootVersion[i];
+			Bp.bootVersion[i]=version[i];
 		}
 		CRCR=crc16(defaul_BootVersion,14);
 		Bp.bootVersion[14]=(u8)(CRCR>>8);
